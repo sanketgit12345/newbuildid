@@ -1,0 +1,10 @@
+export const BIBlue = "#083DB8";
+export const BIYellow = "#FFBC0A";
+export const BIGrey = "#8D8D8D";
+export const BILightGrey = "#CCCCCC";
+export const BIWhite = "#FFFFFF";
+export const BIBlack = "#000000";
+export const BIRed = "#FA0000";
+export const BILightRed = "#FABEBE";
+export const BIGreen = "#28A745";
+export const BILightYellow = "#FFEEBF";

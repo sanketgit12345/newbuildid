@@ -1,0 +1,90 @@
+.topbar-body {
+    margin-top: 60px;
+    margin-left: 230px;
+}
+
+.topbar-body .page {
+    background: #CCCCCC;
+    height: 100vh;
+}
+
+.topbar-body .page .header {
+     background: var(--buildid-yellow);
+}
+
+.topbar-body .page .page-content {
+    padding: 0px 10% 0px 13%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+}
+
+.topbar-body .page .page-content .heading {
+   color: var(--buildid-blue);
+}
+
+.toggle-group {
+    margin-top: 16px;
+    background-color: #ffff;
+}
+
+.detail-info { 
+    padding: 1rem 10% 0px 13%;
+}
+
+/**************************************************************
+******************** Builderbuks ******************************
+***************************************************************/
+
+.builder-bucks-bar-main {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: #ffbc0a !important;
+    margin: 0px 0px !important;
+}
+
+.builder-bucks-bar-header-chrome {
+    position: fixed;
+    z-index: 9;
+    width: -webkit-fill-available;
+    margin-top: 5px; 
+    background-color: #FFBC0A;
+}
+
+.builder-bucks-bar-header {
+    position: fixed;
+    z-index: 9;
+    width: -moz-available;
+    margin-top: -48px;
+    background-color: #FFBC0A;
+}
+
+.accordionSummary-height {
+    height: 35px;
+    width: 100%;
+    padding-right: 30px !important;
+}
+
+.builder-bucks-bar-header-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.accordionSummary-font {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0;
+}
+
+.builder-bucks-bar-child-div {
+    padding: 0 20%;
+    padding-top: 60px;
+    padding-bottom: 5px;
+}
+
+
+.flex-row {
+    display: flex;
+    flex-direction: column;
+}

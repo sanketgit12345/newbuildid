@@ -1,0 +1,26 @@
+.postcard .cardheader {
+      padding-bottom: 0px;
+}
+.postcard .cardheader .card-title {
+     display: flex;
+     align-items: center;
+}
+.postcard .cardheader .card-title .link {
+     font-size: 15px;
+}
+.postcard .cardheader .sub-header {
+     display: flex;
+     flex-direction: column;
+     text-align: left;
+}
+.postcard .post-icon .MuiAvatar-img {
+      object-fit: contain;
+}
+.postcard .cardBody {
+     padding: 10px 0px 10px 15px !important;
+}
+.postcard .cardBody .content {
+     padding: 0px;
+     margin: 0px;
+     font-size: 15px;
+}

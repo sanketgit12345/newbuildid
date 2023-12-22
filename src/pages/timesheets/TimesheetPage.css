@@ -1,0 +1,18 @@
+
+.timesheet-grid .grid-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.timesheet-grid .action-btn {
+     display: flex;
+     gap: 15px;
+}
+
+.timesheet-grid .list-content .list-item::before {
+     background-color: transparent;
+}
+
+.timesheet-grid .list-content .list-item.Mui-expanded {
+   margin: 0px;
+}

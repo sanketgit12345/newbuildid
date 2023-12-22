@@ -1,0 +1,24 @@
+:root {
+	--buildid-blue: #083DB8;
+	--buildid-yellow: #FFBC0A;
+	--buildid-grey: #8D8D8D;
+	--buildid-lightgrey: #CCCCCC;
+	--buildid-white: #FFFFFF;
+	--buildid-black: #000000;
+	--buildid-lightred: #FABEBE;
+}
+
+/* Scrollbars (Chrome only) */
+::-webkit-scrollbar {
+	width: 0%;
+	height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--buildid-grey);
+	border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}

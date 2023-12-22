@@ -1,0 +1,120 @@
+.login-grid {
+    height: 100vh;
+    margin-top: 0px !important;
+}
+
+.login-grid .banner-section {
+    background: #083db83d;
+}
+
+.login-grid .login-header {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.login-grid .login-header .flex-row .logo {
+    width: 145px;
+    overflow: hidden;
+}
+
+.login-grid .banner {
+    display: flex;
+    align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    height: calc(100vh - 135px);
+    justify-content: center;
+}
+
+.login-grid .banner .login-banner {
+    width: 100%;
+    max-width: 600px;
+}
+
+.login-grid .auth-grid {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    -webkit-box-align: center;
+    padding: 45px !important;
+}
+
+.login-grid .auth-grid .auth-heading {
+    margin: 0px 0px 8px;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 700;
+}
+
+.login-grid .auth-grid .auth-subheading {
+    margin: 0px 0px 8px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    line-height: 1.75;
+    color: rgb(42, 53, 71);
+}
+
+.login-grid .auth-grid .signin-btn {
+    background: #083DB8;
+    font-weight: 400;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.9375rem;
+    text-transform: capitalize;
+}
+
+.login-grid .auth-grid .input-label {
+    margin: 25px 0px 5px;
+    font-size: 0.875rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    line-height: 1.75;
+    font-weight: 600;
+    display: block;
+}
+
+.login-grid .auth-grid .footer-stack {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.login-grid .auth-grid .forgot-stack {
+    justify-content: end;
+}
+
+.login-grid .auth-grid .forgot-stack .forgot-link {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    text-decoration: none;
+    font-weight: 500;
+    color: #083DB8; 
+    font-size: 0.9375rem;
+    margin-left: 5px;
+}
+
+.login-grid .auth-grid .new-account {
+    justify-content: start;
+}
+
+.login-grid .auth-grid .new-account .newacct-text {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: rgb(42, 53, 71);
+    font-weight: 500;
+}
+
+.login-grid .auth-grid .new-account .acc-link {
+    font-size: 0.875rem;
+    line-height: 1.334rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 500;
+    color: #083DB8;
+    margin-left: 5px;
+    text-decoration: none;
+}

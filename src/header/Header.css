@@ -1,0 +1,55 @@
+.app-bar .apps-btn {
+    gap: 3px;
+    color: rgb(42, 53, 71);
+    background-color: white;
+    box-shadow: none;
+    text-transform: capitalize;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.apps-btn:hover {
+    color: rgb(42, 53, 71);
+    background-color: white !important;
+    box-shadow: none !important;
+    text-transform: capitalize;
+}
+
+.app-bar .apps-btn .dropdown-icon {
+     font-size: 19px;
+}
+
+/*********** In Header Apps ****************/
+
+.apps-popover {
+    width: 520px;
+    padding: 20px;
+}
+
+.apps-popover .popover-item {
+  padding-bottom: 10px;
+}
+
+.apps-popover .popover-item .popover-icon {
+    min-width: 45px;
+    height: 45px;
+    background-color: rgb(242, 246, 250);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.apps-popover .popover-item .app-name {
+    margin: 0px;
+    font-size: 0.875rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    line-height: 1.57;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+    color: rgb(42, 53, 71);
+}

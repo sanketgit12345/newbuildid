@@ -1,0 +1,17 @@
+
+/********* Post Card **********/
+ 
+.main-content .post-grid .post-card {
+    border-radius: 7px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+/********** Header **********/
+
+.header-drawer { 
+   justify-content: center;
+}
+
+.header-drawer .build-logo {
+     height: 50px;
+}
