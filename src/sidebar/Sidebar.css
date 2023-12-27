@@ -13,6 +13,10 @@
    color: white;
 }
 
+.siderbar-list .sidebar-item.active .side-icons {
+   color: #fff;
+}
+
 .siderbar-list .sidebar-item .item-name .css-10hburv-MuiTypography-root {
     margin: 0px;
     font-size: 0.875rem;

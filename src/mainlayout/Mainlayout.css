@@ -1,6 +1,10 @@
 
 /********* Post Card **********/
  
+.main-content {
+     padding-top: 7px !important;
+}
+
 .main-content .post-grid .post-card {
     border-radius: 7px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);

@@ -18,6 +18,7 @@ import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui
 import buildLogo from "../assets/images/build_id_logo.png";
 import MuiDrawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 270;
 
@@ -72,11 +73,12 @@ export default function Sidebar() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [open, setOpen] = useState(true);
+    const navigate = useNavigate();
 
     const menuItems = [
         {
             path: "home",
-            icon: <HomeIcon className="side-icons" style={{color:"white"}}/>,
+            icon: <HomeIcon className="side-icons" />,
             title: "Home"
         },
         {
@@ -85,12 +87,12 @@ export default function Sidebar() {
             title: "Map"
         },
         {
-            path: "/main/contacts",
+            path: "contacts",
             icon: <PersonIcon className="side-icons" />,
             title: "Builder Network"
         },
         {
-            path: "home",
+            path: "tickets",
             icon: <CreditCardIcon className="side-icons" />,
             title: "Tickets"
         },
@@ -141,8 +143,9 @@ export default function Sidebar() {
         }
     ]
 
-    const openPage = (index) => {
+    const navigateTopage = (item,index) => {
         setCurrentIndex(index);
+         navigate(item?.path)
     }
 
     return (
@@ -155,7 +158,7 @@ export default function Sidebar() {
             </DrawerHeader>
             <List className="siderbar-list">
                 {menuItems.map((item, index) => (
-                    <ListItem className={`sidebar-item ${currentIndex === index && "active"}`} key={index} disablePadding sx={{ display: 'block' }}>
+                    <ListItem onClick={()=>navigateTopage(item,index)} className={`sidebar-item ${currentIndex === index && "active"}`} key={index} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,

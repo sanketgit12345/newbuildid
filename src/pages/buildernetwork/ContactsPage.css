@@ -3,6 +3,7 @@
     background-color: #083db83d;
     border-radius: 12.25px;
     padding: 25px;
+    margin-left: 0px !important;
 }
 
 .contact-grid .heading {
@@ -14,6 +15,17 @@
 }
 
 .contact-list {
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 7px;
+    box-shadow: rgba(145, 158, 171, 0.3) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
+    overflow: hidden;
+    background-image: none;
+    padding: 15px;
+    position: relative;
+    margin-top: 10px;
+}
+
+.contact-list .contact-container {
     background-color: rgb(255, 255, 255);
     color: rgb(42, 53, 71);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -24,3 +36,77 @@
     box-shadow: none !important;
 }
 
+.contact-list .contact-container .contact-table .profile-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 10px;
+}
+
+.contact-list .contact-container .contact-table .profile-content .profile-icon {
+    height: 55px;
+    width: 55px;
+}
+
+.contact-list .contact-container .contact-table .email-content .user-email,
+.contact-list .contact-container .contact-table .profile-content .user-name {
+    margin: 0px;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+}
+
+.contact-list .contact-container .contact-table .email-content .status,
+.contact-list .contact-container .contact-table .profile-content .joined-date {
+    margin: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    line-height: 1.57;
+    color: rgb(42, 53, 71);
+}
+
+.contact-list .contact-container .contact-table .last-cell {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/*************** Table Pagination ******************/
+
+.table-pagination .css-pdct74-MuiTablePagination-selectLabel {
+    font-size: 0.75rem;
+    letter-spacing: 0rem;
+    font-weight: 400;
+    line-height: 1rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    flex-shrink: 0;
+}
+
+.table-pagination .css-levciy-MuiTablePagination-displayedRows {
+    font-size: 0.75rem;
+    letter-spacing: 0rem;
+    font-weight: 400;
+    line-height: 1rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    flex-shrink: 0;
+}
+
+.table-pagination .css-16c50h-MuiInputBase-root-MuiTablePagination-select {
+    font-weight: 400;
+    line-height: 1.4375em;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    cursor: text;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: inherit;
+    font-size: inherit;
+    flex-shrink: 0;
+    margin-right: 32px;
+    margin-left: 8px;
+}

@@ -1,18 +1,197 @@
 
-.timesheet-grid .grid-content {
-    display: flex;
-    justify-content: space-between;
+.timesheet-grid .goal-list {
+   background-color: rgb(255, 255, 255);
+   color: rgb(42, 53, 71);
+   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+   border-radius: 7px;
+   border: 1px solid rgb(229, 234, 239);
+   box-shadow: none !important;
+   padding: 15px;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
 }
 
-.timesheet-grid .action-btn {
-     display: flex;
-     gap: 15px;
+.timesheet-grid .goal-list .goal-name {
+   margin: 0px;
+   font-size: 1rem;
+   line-height: 1.2rem;
+   font-family: "Plus Jakarta Sans", sans-serif;
+   font-weight: 600;
 }
 
-.timesheet-grid .list-content .list-item::before {
-     background-color: transparent;
+.timesheet-grid .list-content {
+   border-top: 1px solid rgba(224, 224, 224, 1);
+   background-color: rgb(255, 255, 255);
+   color: rgb(42, 53, 71);
+   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+   border-radius: 7px;
+   border: 1px solid rgb(229, 234, 239);
+   background-image: none;
+   margin-top: 15px;
+   box-shadow: none !important;
+}
+
+.timesheet-grid .list-content .list-item {
+   box-shadow: none;
+   background-color: transparent;
 }
 
 .timesheet-grid .list-content .list-item.Mui-expanded {
    margin: 0px;
+   border-top: 1px solid rgba(224, 224, 224, 1);
+}
+
+.timesheet-grid .list-content .list-item.Mui-expanded:first-of-type {
+   border-top: 0px;
+}
+
+.timesheet-grid .list-content .list-item::before {
+  background-color: rgba(224, 224, 224, 1);
+  height: 0.5px;
+}
+
+.timesheet-grid .list-content .list-item .acc-summary .title {
+   margin: 0px;
+   font-size: 1rem;
+   line-height: 1.2rem;
+   font-family: "Plus Jakarta Sans", sans-serif;
+   font-weight: 600;
+}
+
+.timesheet-grid .list-content .list-item .acc-summary .time {
+   margin: 0px;
+   font-size: 0.875rem;
+   font-weight: 400;
+   font-family: "Plus Jakarta Sans", sans-serif;
+   line-height: 1.57;
+   color: rgb(42, 53, 71);
+}
+
+.timesheet-grid .list-content .list-item .acc-summary .MuiAccordionSummary-content {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+}
+
+
+
+/******************** Add Timesheet *********************/
+
+.add-timesheet {
+   padding: 20px;
+   border: 1px solid rgb(229, 234, 239);
+   margin-top: 15px;
+   border-radius: 7px;
+}
+
+.add-timesheet .timesheet-picker {
+ width: 325px;
+}
+
+.timepicker-date {
+   width: 400px;
+ }
+
+ .timepicker-date .MuiInputBase-adornedEnd  {
+    height: 45px;
+ }
+
+ .add-timesheet .add-job-place {
+   align-items: center;
+   text-align: center;
+   background: rgba(0, 0, 0, 0.08);
+   border-radius: 7px;
+ }
+
+ .add-timesheet .add-job-place .business-icon {
+   font-size: 160px;
+   color: gray;
+}
+
+.add-timesheet .add-job-place .icon-text {
+   margin: 0px 0px 16px;
+   font-size: 0.950rem;
+   font-weight: 400;
+   font-family: "Plus Jakarta Sans", sans-serif;
+   line-height: 1.57;
+   color: rgb(42, 53, 71);
+}
+
+/**************** Job Grid listing **************/
+
+.add-timesheet .job-grid {
+   border: 1px solid rgb(229, 234, 239);
+   border-radius: 7px;
+   padding: 15px;
+   margin-top: 15px;
+}
+
+.add-timesheet .job-grid .post-info .comp-name {
+   margin: 0px;
+   font-weight: 600;
+   font-size: 1rem;
+   line-height: 1.2rem;
+   font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.add-timesheet .job-grid .post-info .post-img {
+    height: 60px;
+    border-radius: 7px;
+}
+
+.add-timesheet .job-grid .post-info .post-name {
+   margin: 0px;
+   font-weight: 600;
+   font-size: 1rem;
+   line-height: 1.2rem;
+   font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.add-timesheet .job-grid .post-info .post-address {
+   margin: 0px 0px 0px;
+   font-size: 0.875rem;
+   font-weight: 400;
+   font-family: "Plus Jakarta Sans", sans-serif;
+   line-height: 1.57;
+   color: rgb(42, 53, 71);
+}
+
+.add-timesheet .job-grid .close-post {
+   background: #8080804f;
+   height: 15px;
+   width: 15px;
+   border-radius: 50px;
+   padding: 6px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.add-timesheet .job-grid .required-text {
+   margin: 0px 0px 0px;
+   font-size: 0.875rem;
+   font-weight: 400;
+   font-family: "Plus Jakarta Sans", sans-serif;
+   line-height: 1.57;
+   color: rgb(42, 53, 71);
+}
+
+.add-timesheet .job-grid .upload-image {
+   display: flex;
+   border: 2px solid rgb(229, 234, 239);
+   justify-content: center;
+   height: 100px;
+   align-items: center;
+   width: 100px;
+   padding: 10px;
+   border-style: dashed;
+   border-radius: 7px;
+}
+
+.add-timesheet .job-grid .image-text {
+   font-size: 0.875rem;
+   font-family: 'Plus Jakarta Sans';
+   color: rgba(0, 0, 0, 0.6);
 }

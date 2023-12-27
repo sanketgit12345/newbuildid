@@ -1,17 +1,44 @@
 import { Box, Button, Grid, InputLabel, Stack, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import buildLogo from "../assets/images/build_id_logo.png";
 import loginBanner from "../assets/images/login_banner.png";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { Postrequestcall } from "../apicall/Postrequest";
+import { LOGIN } from "../constant/Apipath";
+import CryptoJS from 'crypto-js';
+import { useDispatch } from "react-redux";
+import { setLogindata } from "../redux/actions/actions";
+
 
 export default function Login() {
 
+    const [inputValue,setInputvalue] = useState({
+        email:"",
+        password:""
+    })
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    const inputValuechange = (e) => {
+         setInputvalue({
+            ...inputValue,
+            [e.target.name]:e.target.value
+         })
+    }
 
-    const navigateTohome = () => {
-         navigate("/main")
+    const navigateTohome = async () => {
+        const hash = CryptoJS.SHA256(inputValue?.password).toString();
+        const loginObj = {
+            "User": inputValue?.email,
+            "Password": hash
+        }
+        let getLoginresponse = await Postrequestcall(LOGIN,loginObj);
+        if(getLoginresponse.status === 200) {
+            console.log("login response",getLoginresponse);
+           // dispatch(setLogindata(getLoginresponse?.data?.data));
+            navigate("/main/home")
+        }
     }
 
 
@@ -35,13 +62,13 @@ export default function Login() {
                         <InputLabel className="input-label">
                             Email
                         </InputLabel>
-                        <TextField size="small" fullWidth id="my-input" />
+                        <TextField size="small" name="email" onChange={(e)=>inputValuechange(e)} value={inputValue?.email}  fullWidth id="my-input" />
                     </Box>
                     <Box>
                         <InputLabel className="input-label">
                             Password
-                        </InputLabel>
-                        <TextField size="small" fullWidth id="my-input" />
+                        </InputLabel> 
+                        <TextField size="small" name="password" onChange={(e)=>inputValuechange(e)} value={inputValue?.password}  fullWidth id="my-input" />
                     </Box>
                 </Stack>
                 <Stack direction="row" className="footer-stack forgot-stack" spacing={2}>

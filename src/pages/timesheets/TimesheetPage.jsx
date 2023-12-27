@@ -1,117 +1,104 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, Card, Grid, Tab, Tabs, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { BIBlue } from "../../constant/Color";
-import "../timesheets/TimesheetPage.css";
+import { Accordion, AccordionDetails, AccordionSummary, Button, Grid, Stack, Typography } from "@mui/material";
+import React from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import LinearProgress from '@mui/material/LinearProgress';
+import "../timesheets/TimesheetPage.css";
+import { useNavigate } from "react-router-dom";
 
 export default function TimesheetPage() {
 
-    const tabsArray = ["unsent", "sent"];
-    const [activeTab, setActiveTab] = useState("unsent");
 
-    const handleTabChange = (event, newTab) => {
-        setActiveTab(newTab);
+    const navigate = useNavigate();
+
+
+    const addTimesheet = () => {
+            navigate("add");
     }
-
+   
     return (
-        <div className="page">
-            <div className="header">
-                <div className="page-content">
-                    <h1 className="heading">Timesheets</h1>
-                </div>
-            </div>
-            <div className="detail-info">
+        <>
+            <Grid container spacing={1} rowGap={2} className="contact-grid">
+                <Grid item sm={6} md={4} xs={12} lg={12} style={{ paddingTop: "0px", paddingLeft: "0px" }}>
+                    <h4 className="heading">Timesheets</h4>
+                </Grid>
+            </Grid>
+            <div className="contact-list">
                 <Grid container spacing={2} className="timesheet-grid">
                     <Grid item xs={4}>
-                        <Card style={{ padding: '15px' }}>
-                            <Button variant="contained"
-                                style={{ background: BIBlue,float:"right" }}>Edit</Button>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <div className="grid-content">
-                            <Tabs
-                                textColor="primary"
-                                indicatorColor="primary"
-                                value={activeTab}
-                                onChange={handleTabChange}>
-                                {
-                                    tabsArray.map((tab, index) => (
-                                        <Tab key={index} value={tab} label={tab}
-                                            style={{ backgroundColor: 'white', borderRadius: '5px', marginRight: '20px', }} />
-                                    ))
-                                }
-                            </Tabs>
-                            <div className="action-btn">
-                                {activeTab === "unsent" && <div className="input-container">
-                                    <Button
-                                        variant="contained"
-                                        style={{ background: BIBlue }}
-                                    >
-                                        Add Timesheet
-                                    </Button>
-                                </div>}
-                                <div className="input-container">
-                                    <Button
-                                        variant="contained"
-                                        disabled={true}
-                                    >
-                                        Send
-                                    </Button>
-                                </div>
-                            </div>
+                        <div className="goal-list">
+                            <Stack alignItems={"end"}>
+                                <Button style={{ width: "fit-content" }} className="ticket-btn active">Edit</Button>
+                            </Stack>
+                            <Stack gap={1}>
+                                <Stack flexDirection={"row"} justifyContent={"space-between"}>
+                                    <h6 className="goal-name">Test Goal</h6>
+                                    <span>10 / 20 hrs</span>
+                                </Stack>
+                                <LinearProgress variant="determinate" value={50} />
+                            </Stack>
+                            <Stack gap={1}>
+                                <Stack flexDirection={"row"} justifyContent={"space-between"}>
+                                    <h6 className="goal-name">Test Goal</h6>
+                                    <span>10 / 20 hrs</span>
+                                </Stack>
+                                <LinearProgress variant="determinate" value={50} />
+                            </Stack>
+                            <Stack gap={1}>
+                                <Stack flexDirection={"row"} justifyContent={"space-between"}>
+                                    <h6 className="goal-name">Test Goal</h6>
+                                    <span>10 / 20 hrs</span>
+                                </Stack>
+                                <LinearProgress variant="determinate" value={50} />
+                            </Stack>
+                            <Stack gap={1}>
+                                <Stack flexDirection={"row"} justifyContent={"space-between"}>
+                                    <h6 className="goal-name">Test Goal</h6>
+                                    <span>10 / 20 hrs</span>
+                                </Stack>
+                                <LinearProgress variant="determinate" value={50} />
+                            </Stack>
+                            <Stack gap={1}>
+                                <Stack flexDirection={"row"} justifyContent={"space-between"}>
+                                    <h6 className="goal-name">Test Goal</h6>
+                                    <span>10 / 20 hrs</span>
+                                </Stack>
+                                <LinearProgress variant="determinate" value={50} />
+                            </Stack>
                         </div>
-                        <div className="list-content" style={{ marginTop: "10px" }}>
-                            <Accordion className="list-item">
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>November 27, 2023</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion className="list-item">
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>November 04, 2023</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion className="list-item">
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>November 04, 2023</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
+                    </Grid>
+                    <Grid item xs={8} className="timesheet-list">
+                        <Stack direction="row" justifyContent={"space-between"} spacing={2}>
+                            <Stack direction="row" spacing={2}>
+                                <Button className="ticket-btn active">Unsent</Button>
+                                <Button variant="outlined" className="ticket-btn">Sent</Button>
+                            </Stack>
+                            <Button className="ticket-btn active"  onClick={()=>addTimesheet()}>Add Timesheet</Button>
+                        </Stack>
+                        <div className="list-content">
+                            {[1, 2, 3, 4, 5, 6].map((item) => (
+                                <Accordion className="list-item">
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id="panel1a-header"
+                                        className="acc-summary"
+                                    >
+                                        <Typography className="title">November 27, 2023</Typography>
+                                        <span className="time">1 Jobs,  4 Hours</span>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                                            malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                            ))}
                         </div>
                     </Grid>
                 </Grid>
             </div>
-        </div >
+        </>
     )
 
 }
