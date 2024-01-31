@@ -1,15 +1,16 @@
-export const Postrequestcall = async (apiPath, payload) => {
-    // let auth = {};
-    // if (
-    //     typeof access_token !== "undefined" &&
-    //     access_token !== null &&
-    //     access_token !== ""
-    // ) {
-    //    auth = {
-    //       "Authorization" : `Bearer ${access_token}`
-    //    }
-    // }
+export const Postrequestcall = async (apiPath,payload,token) => {
+    let auth = {};
+    if (
+        typeof token !== "undefined" &&
+        token !== null &&
+        token !== ""
+    ) {
+       auth = {
+          "Authorization" : `Bearer ${token}`
+       }
+    }
    let headers = {
+        ...auth,
         "Accept": "application/json",
         "Content-Type": "application/json",
     }

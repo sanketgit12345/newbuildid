@@ -112,17 +112,17 @@ export default function Sidebar() {
             title: "Expenses"
         },
         {
-            path: "home",
+            path: "job-postings",
             icon: <BusinessCenterIcon className="side-icons" />,
             title: "Job Postings"
         },
         {
-            path: "home",
+            path: "buy-sell",
             icon: <HandshakeIcon className="side-icons" />,
             title: "Buy/Sell"
         },
         {
-            path: "home",
+            path: "montages",
             icon: <PlayCircleIcon className="side-icons" />,
             title: "Montages"
         },

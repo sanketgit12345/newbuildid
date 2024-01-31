@@ -1,1 +1,10 @@
 export const LOGIN = "users/login/";
+export const SIGNIN = "users/SignIn2";
+export const SIGNUP = "users/CreateAccount/";
+export const GETPOSTS_NEWSFEED = "posts/GetPostsNewsFeed/";
+export const ISVALID_RESETCODE = "users/IsValidResetCode/";
+export const FETCH_TIMESHEETS = "users/FetchTimeSheets";
+export const FETCH_USER_WORK_HISTORY = "users/FetchUsersWorkHistory";
+export const SAVE_TIMESHEETS = "users/SaveTimeSheets";
+export const SAVE_TIMESHEETS_ENTRIES = "users/SaveTimeSheetsEntries";
+export const SAVE_TIMESHEETS_PICTURES = "users/SaveTimeSheetsPictures";

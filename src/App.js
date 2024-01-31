@@ -1,14 +1,22 @@
-import './App.css';
+import "./App.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Mainlayout from './mainlayout/Mainlayout';
-import Login from './auth/Login';
-import HomePage from './pages/home/HomePage';
-import ContactsPage from './pages/buildernetwork/ContactsPage';
-import TimesheetPage from './pages/timesheets/TimesheetPage';
-import ExpensesPage from './pages/expenses/ExpensesPage';
-import TicketPage from './pages/tickets/TicketPage';
+import Mainlayout from "./mainlayout/Mainlayout";
+import Login from "./auth/Login";
+import HomePage from "./pages/home/HomePage";
+import ContactsPage from "./pages/buildernetwork/ContactsPage";
+import TimesheetPage from "./pages/timesheets/TimesheetPage";
+import ExpensesPage from "./pages/expenses/ExpensesPage";
+import TicketPage from "./pages/tickets/TicketPage";
 import axios from "axios";
-import AddtimesheetPage from './pages/timesheets/AddtimesheetPage';
+import AddtimesheetPage from "./pages/timesheets/AddtimesheetPage";
+import Profile from "./pages/profile/ProfilePage";
+import BuySellListPage from "./pages/buysell/BuySellListPage";
+import JobPostingPage from "./pages/jobposting/JobPostingPage";
+import MontagesPage from "./pages/montages/MontagesPage";
+import Register from "./auth/Register";
+import ForgotPassword from "./auth/ForgotPassword";
+import ResetPassword from "./auth/ResetPassword";
+import EmailVerification from "./auth/EmailVerification";
 
 function App() {
 
@@ -18,7 +26,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Login />} />
+       <Route exact path="/register" element={<Register />} />
+        <Route exact path="/verification" element={<EmailVerification />} />
+        <Route exact path="/forgot-password" element={<ForgotPassword />} />
+        <Route exact path="/reset-password" element={<ResetPassword />} />
         <Route exact path="/main" element={<Mainlayout />}>
+        <Route exact path="profile" element={<Profile />} />
           <Route exact path="home" element={<HomePage />} />
           <Route exact path="contacts" element={<ContactsPage />} />
           <Route exact path="timesheets" element={<Outlet />}>
@@ -27,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="tickets" element={<TicketPage />} />
           <Route exact path="expenses" element={<ExpensesPage />} />
+          <Route exact path="buy-sell" element={<BuySellListPage />} />
+          <Route exact path="job-postings" element={<JobPostingPage />} />
+          <Route exact path="montages" element={<MontagesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

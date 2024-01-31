@@ -7,6 +7,7 @@ import profileIcon from "../../assets/images/profile-img.jpg";
 import DeleteIcon from '@mui/icons-material/Delete';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
+
 export default function ContactsPage() {
 
 
@@ -40,13 +41,13 @@ export default function ContactsPage() {
                                         <h6 className="user-email">mvelicu@thermalsystems.ca</h6>
                                         <h6 className="status">Primary</h6>
                                     </Stack>
-                                </TableCell>
-                                <TableCell align="center">
+                                </TableCell> 
+                                 <TableCell align="center">
                                     <div className="last-cell">
                                         <QuestionAnswerIcon style={{ color: "rgba(0, 0, 0, 0.54)" }} />
                                         <DeleteIcon style={{ color: "rgba(0, 0, 0, 0.54)" }} />
                                     </div>
-                                </TableCell>
+                                </TableCell> 
                             </TableRow>
                             <TableRow
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -151,7 +152,7 @@ export default function ContactsPage() {
                     page={page}
                     rowsPerPage={rowsPerPage}
                 />
-            </div>
+            </div> 
         </>
     )
 

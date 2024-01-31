@@ -5,7 +5,7 @@ import loginBanner from "../assets/images/login_banner.png";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Postrequestcall } from "../apicall/Postrequest";
-import { LOGIN } from "../constant/Apipath";
+import { LOGIN, SIGNIN } from "../constant/Apipath";
 import CryptoJS from 'crypto-js';
 import { useDispatch } from "react-redux";
 import { setLogindata } from "../redux/actions/actions";
@@ -13,34 +13,43 @@ import { setLogindata } from "../redux/actions/actions";
 
 export default function Login() {
 
-    const [inputValue,setInputvalue] = useState({
-        email:"",
-        password:""
+    const [inputValue, setInputvalue] = useState({
+        email: "",
+        password: ""
     })
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const inputValuechange = (e) => {
-         setInputvalue({
+        setInputvalue({
             ...inputValue,
-            [e.target.name]:e.target.value
-         })
+            [e.target.name]: e.target.value
+        })
     }
 
     const navigateTohome = async () => {
         const hash = CryptoJS.SHA256(inputValue?.password).toString();
         const loginObj = {
-            "User": inputValue?.email,
-            "Password": hash
+            User: inputValue?.email,
+            Password: hash
         }
-        let getLoginresponse = await Postrequestcall(LOGIN,loginObj);
-        if(getLoginresponse.status === 200) {
-            console.log("login response",getLoginresponse);
-           // dispatch(setLogindata(getLoginresponse?.data?.data));
-            navigate("/main/home")
+        let getLoginresponse = await Postrequestcall(LOGIN, loginObj,null); // Get token from login api
+        if (getLoginresponse.status === 200) {
+            const signinObj = {
+                Email:inputValue?.email,
+                Password:hash
+            }
+            let getSigninresponse = await Postrequestcall(SIGNIN,signinObj,getLoginresponse?.data?.token); // Get user information form Signin api
+            if(getSigninresponse.status === 201) {
+                let signIndata = {
+                    token:getLoginresponse?.data?.token,
+                    data:getSigninresponse?.data?.data
+                }
+                dispatch(setLogindata(signIndata));
+                navigate("/main/home");
+            }
         }
     }
-
 
     return (
         <Grid container spacing={2} className="login-grid">
@@ -62,17 +71,17 @@ export default function Login() {
                         <InputLabel className="input-label">
                             Email
                         </InputLabel>
-                        <TextField size="small" name="email" onChange={(e)=>inputValuechange(e)} value={inputValue?.email}  fullWidth id="my-input" />
+                        <TextField size="small" name="email" onChange={(e) => inputValuechange(e)} value={inputValue?.email} fullWidth id="my-input" />
                     </Box>
                     <Box>
                         <InputLabel className="input-label">
                             Password
-                        </InputLabel> 
-                        <TextField size="small" name="password" onChange={(e)=>inputValuechange(e)} value={inputValue?.password}  fullWidth id="my-input" />
+                        </InputLabel>
+                        <TextField size="small" name="password" onChange={(e) => inputValuechange(e)} value={inputValue?.password} fullWidth id="my-input" />
                     </Box>
                 </Stack>
                 <Stack direction="row" className="footer-stack forgot-stack" spacing={2}>
-                    <Link color="primary" className="forgot-link">
+                    <Link color="primary" className="forgot-link" to="/forgot-password">
                         Forgot your password?
                     </Link>
                 </Stack>
@@ -86,10 +95,10 @@ export default function Login() {
                 >
                     Sign In
                 </Button>
-                <Stack direction="row"  className="footer-stack new-account" style={{justifyContent:"start"}} spacing={2}>
-                     <span className="newacct-text">New to BuildID ?</span>
-                    <Link color="primary" className="acc-link">
-                      Create an account
+                <Stack direction="row" className="footer-stack new-account" style={{ justifyContent: "start" }} spacing={2}>
+                    <span className="newacct-text">New to BuildID ?</span>
+                    <Link color="primary" to="/register" className="acc-link">
+                        Create an account
                     </Link>
                 </Stack>
             </Grid>

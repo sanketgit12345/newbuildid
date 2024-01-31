@@ -1,7 +1,7 @@
 import { actionTypes } from "../actions/actions"
 
 const initailData = {
-    loginData: {},
+    loginData : {},
 }
 
 const mainReducer = (state = initailData, action) => {

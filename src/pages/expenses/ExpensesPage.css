@@ -1,18 +1,60 @@
-.expenses {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.expenses .action-btn {
-    display: flex;
-    gap: 15px;
-}
-
-.list-content .list-item::before {
+.expenses-grid .list-content {
+    border-top: 1px solid rgba(224, 224, 224, 1);
+    background-color: rgb(255, 255, 255);
+    color: rgb(42, 53, 71);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 7px;
+    border: 1px solid rgb(229, 234, 239);
+    background-image: none;
+    margin-top: 15px;
+    box-shadow: none !important;
+  }
+  
+  .expenses-grid .list-content .list-item {
+    box-shadow: none;
     background-color: transparent;
-}
-
-.list-content .list-item.Mui-expanded {
-  margin: 0px;
-}
+  }
+  
+  .expenses-grid .list-content .list-item.Mui-expanded {
+    margin: 0px;
+    border-top: 1px solid rgba(224, 224, 224, 1);
+  }
+  
+  .expenses-grid .list-content .list-item.Mui-expanded:first-of-type {
+    border-top: 0px;
+  }
+  
+  .expenses-grid .list-content .list-item::before {
+    background-color: rgba(224, 224, 224, 1);
+    height: 0.5px;
+  }
+  
+  .expenses-grid .list-content .list-item .acc-summary .title {
+    margin: 0px;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+  }
+  
+  .expenses-grid .list-content .list-item .acc-summary .date {
+    margin: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    line-height: 1.57;
+    color: rgb(42, 53, 71);
+  }
+  
+  .expenses-grid
+    .list-content
+    .list-item
+    .acc-summary
+    .MuiAccordionSummary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /******************** Add expenses *********************/
+  

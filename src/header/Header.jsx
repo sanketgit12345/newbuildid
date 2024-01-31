@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../header/Header.css";
 import MuiAppBar from '@mui/material/AppBar';
-import { Avatar, Button, Grid, IconButton, Popover, Stack, Toolbar, Typography } from "@mui/material";
+import { Avatar, Button, Grid, IconButton, ListItemIcon,ListItemText, MenuItem, Popover, Stack, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
@@ -9,6 +9,9 @@ import NotificationsAcitveIcon from '@mui/icons-material/NotificationsActive';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import { styled } from '@mui/material/styles';
 import profileIcon from "../assets/images/profile-img.jpg";
+import { useNavigate } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const drawerWidth = 270;
 
@@ -40,8 +43,11 @@ export default function Header() {
   const id = sopen ? 'simple-popover' : undefined;
 
   const [profilePic, setProfilepic] = useState(null);
+
   const popen = Boolean(profilePic);
   const pId = popen ? 'simple-popover' : undefined;
+
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -66,6 +72,15 @@ export default function Header() {
   const handleClosemenu = () => {
     setProfilepic(null);
   };
+
+  const onProfileClick = () => {
+    navigate("/main/profile");
+    setProfilepic(null);
+  };
+
+  const onLogout = () => {
+      navigate("/");
+  }
 
   return (
     <AppBar position="fixed" className="app-bar" open={open} style={{ backgroundColor: 'white', boxShadow: "none", borderLeft: "1px solid rgba(0, 0, 0, 0.12)" }}>
@@ -217,11 +232,23 @@ export default function Header() {
           anchorEl={profilePic}
           onClose={handleClosemenu}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-        >
-          <p>Content Here .....</p>
+            vertical: "bottom",
+            horizontal: "left",
+          }}>
+          <MenuItem onClick={onProfileClick}>
+            <ListItemIcon>
+              <AccountCircleIcon fontSize={"small"} />
+            </ListItemIcon>
+            <ListItemText style={{ paddingRight: "25px" }}>
+              Profile
+            </ListItemText>
+          </MenuItem>
+          <MenuItem onClick={() =>onLogout()}>
+            <ListItemIcon>
+              <LogoutIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Logout</ListItemText>
+          </MenuItem>
         </Popover>
       </Toolbar>
     </AppBar>

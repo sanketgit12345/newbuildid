@@ -1,20 +1,65 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, Grid, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LinearProgress from '@mui/material/LinearProgress';
 import "../timesheets/TimesheetPage.css";
 import { useNavigate } from "react-router-dom";
+import { Postrequestcall } from "../../apicall/Postrequest";
+import { FETCH_TIMESHEETS } from "../../constant/Apipath";
+import { useSelector } from "react-redux";
+import nodata from "../../assets/images/no_data.webp";
+import moment from "moment";
+
 
 export default function TimesheetPage() {
 
-
     const navigate = useNavigate();
+    const { loginData } = useSelector((state) => state?.main);
 
+    const [timeSheetlist, setTimesheetlist] = useState([]);
+    const [activeList, setActivelist] = useState("unsent")
+
+    useEffect(() => {
+        fetchTimesheets("unsent");
+    }, [])
+
+    const fetchTimesheets = async (flag) => {
+        const obj = {
+            PageNr: 1,
+            NrOfRecPerPage: 100,
+            FullSearch: "",
+            UserId: loginData?.data?.userId,
+            IncludeRecordNr: true,
+            TypeOfObjectReturned: "",
+            SearchList: [{ UserId: loginData?.data?.userId }],
+            SortList: [
+                {
+                    FieldName: "Id",
+                    Direction: "DESC"
+                }
+            ]
+        }
+        let getResponse = await Postrequestcall(FETCH_TIMESHEETS, obj, loginData?.token);
+        if (getResponse.status === 200) {
+            if (flag === "unsent") {
+                let getSentTimesheet = getResponse?.data?.data?.filter((item) => item.isSent === false);
+                setTimesheetlist(getSentTimesheet);
+            } else {
+                let getSentTimesheet = getResponse?.data?.data?.filter((item) => item.isSent === true);
+                setTimesheetlist(getSentTimesheet);
+            }
+        }
+    }
 
     const addTimesheet = () => {
-            navigate("add");
+        navigate("add");
     }
-   
+
+    const getTimsheetlist = (flag) => {
+        setActivelist(flag)
+        fetchTimesheets(flag)
+    }
+
     return (
         <>
             <Grid container spacing={1} rowGap={2} className="contact-grid">
@@ -69,13 +114,13 @@ export default function TimesheetPage() {
                     <Grid item xs={8} className="timesheet-list">
                         <Stack direction="row" justifyContent={"space-between"} spacing={2}>
                             <Stack direction="row" spacing={2}>
-                                <Button className="ticket-btn active">Unsent</Button>
-                                <Button variant="outlined" className="ticket-btn">Sent</Button>
+                                <Button className={`ticket-btn ${activeList === "unsent" ? "active" : ""}`} onClick={() => getTimsheetlist("unsent")}>Unsent</Button>
+                                <Button variant="outlined" className={`ticket-btn ${activeList === "sent" ? "active" : ""}`} onClick={() => getTimsheetlist("sent")}>Sent</Button>
                             </Stack>
-                            <Button className="ticket-btn active"  onClick={()=>addTimesheet()}>Add Timesheet</Button>
+                            <Button className="ticket-btn active" onClick={() => addTimesheet()}>Add Timesheet</Button>
                         </Stack>
                         <div className="list-content">
-                            {[1, 2, 3, 4, 5, 6].map((item) => (
+                            {timeSheetlist.map((item) => (
                                 <Accordion className="list-item">
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
@@ -83,7 +128,7 @@ export default function TimesheetPage() {
                                         id="panel1a-header"
                                         className="acc-summary"
                                     >
-                                        <Typography className="title">November 27, 2023</Typography>
+                                        <Typography className="title">{moment(item.timesheetDate).format("MMMM DD, YYYY")}</Typography>
                                         <span className="time">1 Jobs,  4 Hours</span>
                                     </AccordionSummary>
                                     <AccordionDetails>

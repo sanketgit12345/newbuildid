@@ -1,0 +1,172 @@
+.buysell-grid {
+  background-color: #083db83d;
+  border-radius: 12.25px;
+  padding: 25px;
+  margin-left: 0px !important;
+}
+
+.buysell-grid .heading {
+  margin: 0px;
+  font-weight: 600;
+  font-size: 1.3125rem;
+  line-height: 1.6rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.buysell-list {
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 7px;
+  box-shadow: rgba(145, 158, 171, 0.3) 0px 0px 2px 0px,
+    rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
+  overflow: hidden;
+  background-image: none;
+  padding: 15px;
+  position: relative;
+  margin-top: 10px;
+}
+.buysell-list .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buysell-list .top-left,
+.buysell-list .top-right {
+  display: flex;
+  gap: 10px;
+}
+.buysell-list .header .top-left .textfield .MuiOutlinedInput-root {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4375em;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: rgb(42, 53, 71);
+  box-sizing: border-box;
+  cursor: text;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  border-radius: 7px;
+}
+.buysell-btn {
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0px;
+  margin: 0px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  text-decoration: none;
+  font-weight: 400;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-size: 0.875rem !important ;
+  line-height: 1.75 !important;
+  min-width: 64px !important;
+  padding: 5px 15px !important;
+  border-radius: 7px !important;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border: 1px solid rgba(93, 135, 255, 0.5) !important;
+  color: rgb(93, 135, 255) !important;
+  text-transform: none !important;
+  box-shadow: none;
+}
+
+.buysell-btn.active {
+  background: #083db8;
+  color: white !important;
+}
+
+.buysell-btn:hover {
+  background-color: #083db8 !important;
+  color: white !important;
+}
+
+.buysell-list .buysell-container {
+  background-color: rgb(255, 255, 255);
+  color: rgb(42, 53, 71);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 7px;
+  border: 1px solid rgb(229, 234, 239);
+  background-image: none;
+  margin-top: 25px;
+  box-shadow: none !important;
+}
+
+.buysell-list .buysell-container .buysell-table .list-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: 10px;
+}
+
+.buysell-list .buysell-container .buysell-table .list-content .list-icon {
+  height: 55px;
+  width: 55px;
+}
+
+.buysell-list .buysell-container .buysell-table .report-content .report,
+.buysell-list .buysell-container .buysell-table .list-content .list-name {
+  margin: 0px;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+}
+
+.buysell-list .buysell-container .buysell-table .list-content .list-price {
+  margin: 0px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  line-height: 1.57;
+  color: rgb(42, 53, 71);
+}
+
+/*************** Table Pagination ******************/
+
+.table-pagination .css-pdct74-MuiTablePagination-selectLabel {
+  font-size: 0.75rem;
+  letter-spacing: 0rem;
+  font-weight: 400;
+  line-height: 1rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  flex-shrink: 0;
+}
+
+.table-pagination .css-levciy-MuiTablePagination-displayedRows {
+  font-size: 0.75rem;
+  letter-spacing: 0rem;
+  font-weight: 400;
+  line-height: 1rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  flex-shrink: 0;
+}
+
+.table-pagination .css-16c50h-MuiInputBase-root-MuiTablePagination-select {
+  font-weight: 400;
+  line-height: 1.4375em;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  color: inherit;
+  font-size: inherit;
+  flex-shrink: 0;
+  margin-right: 32px;
+  margin-left: 8px;
+}
