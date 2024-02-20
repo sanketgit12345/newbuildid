@@ -16,7 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 export default function MontagesPage() {
   return (
     <>
-      <Grid container spacing={1} rowGap={2} className="montages-grid">
+      <Grid container spacing={1} rowGap={2} className="page-heading-grid">
         <Grid
           item
           sm={6}
@@ -24,7 +24,7 @@ export default function MontagesPage() {
           xs={12}
           lg={12}
           style={{ paddingTop: "0px", paddingLeft: "0px" }}>
-          <h4 className="heading">Montages</h4>
+          <h4 className="page-heading-title">Montages</h4>
         </Grid>
       </Grid>
       <div className="montages-list">

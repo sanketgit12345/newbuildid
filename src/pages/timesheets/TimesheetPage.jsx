@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { Postrequestcall } from "../../apicall/Postrequest";
 import { FETCH_TIMESHEETS } from "../../constant/Apipath";
 import { useSelector } from "react-redux";
-import nodata from "../../assets/images/no_data.webp";
 import moment from "moment";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 
 export default function TimesheetPage() {
@@ -62,9 +62,9 @@ export default function TimesheetPage() {
 
     return (
         <>
-            <Grid container spacing={1} rowGap={2} className="contact-grid">
+            <Grid container spacing={1} rowGap={2} className="page-heading-grid">
                 <Grid item sm={6} md={4} xs={12} lg={12} style={{ paddingTop: "0px", paddingLeft: "0px" }}>
-                    <h4 className="heading">Timesheets</h4>
+                    <h4 className="page-heading-title">Timesheets</h4>
                 </Grid>
             </Grid>
             <div className="contact-list">
@@ -119,30 +119,37 @@ export default function TimesheetPage() {
                             </Stack>
                             <Button className="ticket-btn active" onClick={() => addTimesheet()}>Add Timesheet</Button>
                         </Stack>
-                        <div className="list-content">
-                            {timeSheetlist.map((item) => (
-                                <Accordion className="list-item">
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                        className="acc-summary"
-                                    >
-                                        <Typography className="title">{moment(item.timesheetDate).format("MMMM DD, YYYY")}</Typography>
-                                        <span className="time">1 Jobs,  4 Hours</span>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <Typography>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                            malesuada lacus ex, sit amet blandit leo lobortis eget.
-                                        </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
-                            ))}
-                        </div>
+                        {timeSheetlist?.length > 0 ? (
+                            <div className="list-content">
+                                {timeSheetlist.map((item) => (
+                                    <Accordion className="list-item">
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1a-content"
+                                            id="panel1a-header"
+                                            className="acc-summary"
+                                        >
+                                            <Typography className="title">{moment(item.timesheetDate).format("MMMM DD, YYYY")}</Typography>
+                                            <span className="time">1 Jobs,  4 Hours</span>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                                                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                                            </Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                ))}
+                            </div>
+                        ) : (
+                            <Stack className="no-data">
+                                <CalendarMonthIcon className="timesheet-icon" />
+                                <span className="no-text" style={{color:"#8D8D8D"}}>You don't have any Timesheets.</span>
+                            </Stack>
+                        )}
                     </Grid>
                 </Grid>
-            </div>
+            </div >
         </>
     )
 

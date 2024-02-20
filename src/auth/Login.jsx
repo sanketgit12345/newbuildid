@@ -30,8 +30,11 @@ export default function Login() {
     const navigateTohome = async () => {
         const hash = CryptoJS.SHA256(inputValue?.password).toString();
         const loginObj = {
-            User: inputValue?.email,
-            Password: hash
+            Email: inputValue?.email,
+            Password: hash,
+            DeviceName:"Dell",
+            NotifyToken: "Test12333",
+            Platform: "windows",                           
         }
         let getLoginresponse = await Postrequestcall(LOGIN, loginObj,null); // Get token from login api
         if (getLoginresponse.status === 200) {

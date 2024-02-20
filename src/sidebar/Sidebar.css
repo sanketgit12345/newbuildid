@@ -2,22 +2,22 @@
   Sidebar Section
 **********************************************************************/
 
-.siderbar-list {
+.sidebar-list {
     padding-left: 24px !important;
     padding-right: 24px !important;
 }
 
-.siderbar-list .sidebar-item.active {
+.sidebar-item.active {
    background: #083DB8;
    border-radius: 8px;
    color: white;
 }
 
-.siderbar-list .sidebar-item.active .side-icons {
+.sidebar-item.active .side-icons {
    color: #fff;
 }
 
-.siderbar-list .sidebar-item .item-name .css-10hburv-MuiTypography-root {
+.sidebar-list .sidebar-item .item-name .css-10hburv-MuiTypography-root {
     margin: 0px;
     font-size: 0.875rem;
     font-weight: 400;

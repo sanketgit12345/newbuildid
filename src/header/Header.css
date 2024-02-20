@@ -1,3 +1,13 @@
+.app-bar {
+    background-color: white !important;
+    box-shadow: none !important;
+}
+
+.app-bar .menu-icon {
+     margin-right: 13px;
+     display: block;
+}
+
 .app-bar .apps-btn {
     gap: 3px;
     color: rgb(42, 53, 71);
@@ -7,6 +17,8 @@
     font-size: 0.875rem;
     font-weight: 400;
     font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 4;
+    border-radius: 0px;
 }
 
 .apps-btn:hover {

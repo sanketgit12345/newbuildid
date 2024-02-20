@@ -1,5 +1,5 @@
 import { Button, Grid, Stack, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./TimesheetPage.css";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -30,6 +30,8 @@ export default function AddtimesheetPage() {
         unitOfDistance: "km",
         isSent: false,
     })
+
+    const inputRef = useRef();
 
     const onTimechange = (newValue, index) => {
         selectedJob[index].hours = newValue.toDate();
@@ -162,11 +164,17 @@ export default function AddtimesheetPage() {
         }
     }
 
+    const handleWheel = (e) => {
+        // Prevent scrolling and blur the input
+       // e.preventDefault();
+        inputRef.current.blur();
+      };
+
     return (
         <>
-            <Grid container spacing={1} rowGap={2} className="contact-grid">
+            <Grid container spacing={1} rowGap={2} className="page-heading-grid">
                 <Grid item sm={6} md={4} xs={12} lg={12} style={{ paddingTop: "0px", paddingLeft: "0px" }}>
-                    <h4 className="heading">Add Timesheet</h4>
+                    <h4 className="page-heading-title">Add Timesheet</h4>
                 </Grid>
             </Grid>
             <div className="add-timesheet">
@@ -227,7 +235,7 @@ export default function AddtimesheetPage() {
                                         </Stack>
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={6} lg={4} marginTop={"15px"}>
-                                        <TextField label="Distance" type="number" value={item?.distance} name="distance" onChange={(e) => onDistancechange(e, parentIndex)} variant="outlined" />
+                                        <TextField label="Distance" onWheel={(e)=>e.target.blur()}  type="number" value={item?.distance} name="distance" onChange={(e) => onDistancechange(e, parentIndex)} variant="outlined" />
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={6} lg={4} display={"flex"} alignItems={"center"} justifyContent={"end"} textAlign={"end"} marginTop={"15px"}>
                                         <Button className="ticket-btn active">Add Goal</Button>
@@ -254,7 +262,6 @@ export default function AddtimesheetPage() {
                                                     accept="image/*"
                                                     onChange={(e) => handleChooseFile(e, parentIndex)}
                                                     hidden />
-
                                                 <Button
                                                     style={{ width: '100%', padding: 0, }}
                                                     variant="text"
@@ -263,7 +270,6 @@ export default function AddtimesheetPage() {
                                                     component="label">
                                                     Upload Image
                                                 </Button>
-
                                             </div>
                                             {item?.uploadImage?.map((item, index, arr) => {
                                                 return (

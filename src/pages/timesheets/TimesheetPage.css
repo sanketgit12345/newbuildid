@@ -73,6 +73,21 @@
    gap: 5px;
 }
 
+.timesheet-grid .no-data {
+   align-items: center;
+   border: 1px solid rgb(229, 234, 239);
+   border-radius: 7px;
+   margin-top: 10px;
+   padding: 16px;
+}
+
+.timesheet-grid .no-data .timesheet-icon {
+   color: #8D8D8D;
+   width: 208px;
+   height: 208px;
+}
+
+
 /******************** Add Timesheet *********************/
 
 .add-timesheet {

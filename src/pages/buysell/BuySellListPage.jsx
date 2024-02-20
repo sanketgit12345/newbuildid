@@ -20,20 +20,15 @@ import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import RoomIcon from "@mui/icons-material/Room";
 import { Search as SearchIcon } from "@mui/icons-material";
 export default function BuySellListPage() {
+  
   const [page, setPage] = React.useState(2);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   return (
     <>
-      <Grid container spacing={1} rowGap={2} className="buysell-grid">
-        <Grid
-          item
-          sm={6}
-          md={4}
-          xs={12}
-          lg={12}
-          style={{ paddingTop: "0px", paddingLeft: "0px" }}>
-          <h4 className="heading">Buy/Sell/Trade</h4>
+      <Grid container spacing={1} rowGap={2} className="page-heading-grid">
+        <Grid item sm={6} md={4} xs={12} lg={12} style={{ paddingTop: "0px", paddingLeft: "0px" }}>
+          <h4 className="page-heading-title">Buy/Sell/Trade</h4>
         </Grid>
       </Grid>
       <div className="buysell-list">

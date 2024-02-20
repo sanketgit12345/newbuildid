@@ -7,6 +7,10 @@ import store, { persistor } from "./redux/store/store";
 import { Provider } from "react-redux";
 import "./assets/css/main.css";
 import { PersistGate } from "redux-persist/integration/react";
+// Import css files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

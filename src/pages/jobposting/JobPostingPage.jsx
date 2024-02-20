@@ -22,7 +22,7 @@ export default function JobPostingPage() {
 
   return (
     <>
-      <Grid container spacing={1} rowGap={2} className="jobposting-grid">
+      <Grid container spacing={1} rowGap={2} className="page-heading-grid">
         <Grid
           item
           sm={6}
@@ -30,7 +30,7 @@ export default function JobPostingPage() {
           xs={12}
           lg={12}
           style={{ paddingTop: "0px", paddingLeft: "0px" }}>
-          <h4 className="heading">Job Postings</h4>
+          <h4 className="page-heading-title">Job Postings</h4>
         </Grid>
       </Grid>
       <div className="jobposting-list">

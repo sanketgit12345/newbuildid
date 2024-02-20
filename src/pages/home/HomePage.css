@@ -10,3 +10,13 @@
      line-height: 1.2rem;
      font-family: "Plus Jakarta Sans", sans-serif;
 }
+
+
+.post-grid .post-card .trade-name {
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+     -webkit-line-clamp: 1;
+     -webkit-box-orient: vertical;
+     width: 235px;
+}

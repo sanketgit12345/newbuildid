@@ -88,3 +88,36 @@
     display: flex;
     flex-direction: column;
 }
+
+/* Page Heading */
+
+.page-heading-grid {
+    background-color: #083db83d;
+    border-radius: 12.25px;
+    padding: 25px;
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+}
+
+.page-heading-title {
+    margin: 0px;
+    font-weight: 600;
+    font-size: 1.3125rem;
+    line-height: 1.6rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.slick-next {
+    right: -20px !important;
+ }
+ .slick-next::before,
+ .slick-prev::before {
+   color: gray !important; /* Set the desired color for the left arrow */
+ }
+ 
+
+ input::-webkit-inner-spin-button,
+ input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+ }

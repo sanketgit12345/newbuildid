@@ -1,9 +1,7 @@
 import "../home/HomePage.css";
 import React, { useEffect, useState } from "react";
 import { red } from '@mui/material/colors';
-import getImage from "../../assets/images/post-icon.jpg";
-import getPostimg from "../../assets/images/post-card-first.jpg";
-import getPostsecond from "../../assets/images/post-card-third.jpg";
+import defaultPostimg from "../../assets/images/post_default.jpg";
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import { Avatar, Button, Card, CardContent, CardHeader, CardMedia, Grid, Stack } from "@mui/material";
@@ -12,12 +10,11 @@ import { GETPOSTS_NEWSFEED } from "../../constant/Apipath";
 import { Getrequestcall } from "../../apicall/Getrequest";
 import { BIBlue } from "../../constant/Color";
 import {
-	PushPin as PushPinIcon,
-	MoreVert as MoreVertIcon,
-	BusinessCenter as BusinessCenterIcon,
-	Room as RoomIcon,
-	Build as BuildIcon,
-	Edit as EditIcon,
+    MoreVert as MoreVertIcon,
+    BusinessCenter as BusinessCenterIcon,
+    Room as RoomIcon,
+    Build as BuildIcon,
+    Edit as EditIcon,
 } from '@mui/icons-material';
 
 export default function HomePage() {
@@ -28,14 +25,16 @@ export default function HomePage() {
 
     useEffect(() => {
         getList("All");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
     const getList = async (active) => {
-        let url = GETPOSTS_NEWSFEED + `${loginData?.data?.userId}` + "/" + `${active}` + "/" + 1 + "/" + 7
+        let url = `${GETPOSTS_NEWSFEED}${loginData?.data?.userId}/${active}/1/7`
         let getPostlistreponse = await Getrequestcall(url, loginData?.token);
         console.log("getpost", getPostlistreponse);
         if (getPostlistreponse.status === 200) {
+            console.log("getlist", getPostlistreponse?.data?.data);
             setPostdata(getPostlistreponse?.data?.data);
         }
     }
@@ -47,10 +46,10 @@ export default function HomePage() {
 
     const getPostIcon = (postIcon) => {
         switch (postIcon) {
-            case "Briefcase": return <Stack alignItems={"center"}><BusinessCenterIcon sx={{ fontSize: "50px", color: BIBlue }} /></Stack>;
-            case "Map Pin": return <Stack alignItems={"center"}><RoomIcon sx={{ fontSize: "50px", color: BIBlue }} /></Stack>;
-            case "Wrench": return <Stack alignItems={"center"}><BuildIcon sx={{ fontSize: "50px", color: BIBlue }} /></Stack>;
-            case "Pencil": return <Stack alignItems={"center"}><EditIcon sx={{ fontSize: "50px", color: BIBlue }} /></Stack>;
+            case "Briefcase": return <Stack alignItems={"center"} height={195} justifyContent={"center"}><BusinessCenterIcon sx={{ fontSize: "130px", color: BIBlue }} /></Stack>;
+            case "Map Pin": return <Stack alignItems={"center"} height={195} justifyContent={"center"}><RoomIcon sx={{ fontSize: "130px", color: BIBlue }} /></Stack>;
+            case "Wrench": return <Stack alignItems={"center"} height={195} justifyContent={"center"}><BuildIcon sx={{ fontSize: "130px", color: BIBlue }} /></Stack>;
+            case "Pencil": return <Stack alignItems={"center"} height={195} justifyContent={"center"}><EditIcon sx={{ fontSize: "130px", color: BIBlue }} /></Stack>;
             default: return;
         }
     }
@@ -59,9 +58,9 @@ export default function HomePage() {
         <>
             <Stack direction="row" spacing={2}>
                 <Button className={`ticket-btn ${activeList === "All" ? "active" : ""}`} onClick={() => callCurrentlist("All")}>All</Button>
-                <Button variant="outlined" className={`ticket-btn ${activeList === "Sites" ? "active" : ""}`} onClick={() => callCurrentlist("Sites")}>Sites</Button>
-                <Button className={`ticket-btn ${activeList === "Products" ? "active" : ""}`} onClick={() => callCurrentlist("Products")}>Products</Button>
-                <Button variant="outlined" className={`ticket-btn ${activeList === "Trades" ? "active" : ""}`} onClick={() => callCurrentlist("Trades")}>Trades</Button>
+                <Button variant="outlined" className={`ticket-btn ${activeList === "Projects" ? "active" : ""}`} onClick={() => callCurrentlist("Projects")}>Projects</Button>
+                <Button className={`ticket-btn ${activeList === "Trades" ? "active" : ""}`} onClick={() => callCurrentlist("Trades")}>Trades</Button>
+                <Button variant="outlined" className={`ticket-btn ${activeList === "Products" ? "active" : ""}`} onClick={() => callCurrentlist("Products")}>Products</Button>
             </Stack>
             <Grid container spacing={1} rowGap={2} className="post-grid">
                 {postData.map((item) => (
@@ -78,16 +77,16 @@ export default function HomePage() {
                                 }
                                 title={item?.appId === 25 ? item?.postedByFirstName + " " + item?.postedByLastName : item?.appRecordName}
                                 subheader={
-                                    item?.appId === 2 || item?.appId === 7 ? (
+                                    item?.appId === 2 || item?.appId === 7 || item?.appId === 4 || item?.appId === 24 ? (
                                         <Stack direction={"column"}>
                                             <span>{item?.postedByFirstName + " " + item?.postedByLastName}
-                                                {item?.tradeName !== "" && " " + "(" + item?.tradeName + ")"}
+                                                {item?.tradeName !== "" && ` (${item?.tradeName})`}
                                             </span>
                                             <span>{item?.age}</span>
                                         </Stack>
                                     ) : (
                                         <Stack direction={"column"}>
-                                            <span>
+                                            <span className="trade-name">
                                                 {item?.tradeName}
                                             </span>
                                             <span>{item?.age}</span>
@@ -96,31 +95,30 @@ export default function HomePage() {
                                 }
                             />
                             {
-                                item?.pictureList?.length > 0 ? (
+                                (item?.icon === null || item?.icon === "") &&
+                                (
                                     <CardMedia
                                         component="img"
-                                        height="194"
-                                        image={item?.pictureList[0]?.pictureUrl}
-                                        alt="Paella dish"
+                                        height={item?.pictureList?.length > 0 ? "194" : "215"}
+                                        image={item?.pictureList?.length > 0 ? item?.pictureList[0]?.pictureUrl : defaultPostimg}
+                                        onError={(e) => { e.target.src = defaultPostimg }}
                                     />
-                                ) : (
-                                       getPostIcon(item?.icon)
                                 )
                             }
-                            {/* {
-                                item?.appId === 2 && ( */}
-                                    <CardContent>
-                                        <Typography variant="body2" color="text.secondary">
-                                            {item?.message}
-                                        </Typography>
-                                    </CardContent>
-                                {/* )
-                            } */}
+                            {getPostIcon(item?.icon)}
+                            <CardContent>
+                                <Typography variant="body2" color="text.secondary">
+                                    {
+                                        item?.message !== "<<<picture>>>" && (
+                                            item?.message
+                                        )
+                                    }
+                                </Typography>
+                            </CardContent>
                         </Card>
                     </Grid>
                 ))}
             </Grid>
         </>
-
     )
 }

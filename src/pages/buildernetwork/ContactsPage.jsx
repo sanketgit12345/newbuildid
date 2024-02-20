@@ -1,5 +1,5 @@
 import { Avatar, Card, Grid, IconButton, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import mapIcon from "../../assets/images/map_marker.png";
 import EmailIcon from '@mui/icons-material/Email';
 import "./ContactsPage.css";
@@ -14,12 +14,16 @@ export default function ContactsPage() {
     const [page, setPage] = React.useState(2);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+    useEffect(()=>{
+    console.log("ddddddddddddd")
+    },[])
+
 
     return (
         <>
-            <Grid container spacing={1} rowGap={2} className="contact-grid">
+            <Grid container spacing={1} rowGap={2} className="page-heading-grid">
                 <Grid item sm={6} md={4} xs={12} lg={12} style={{ paddingTop: "0px", paddingLeft: "0px" }}>
-                    <h4 className="heading">Contacts</h4>
+                    <h4 className="page-heading-title">Contacts</h4>
                 </Grid>
             </Grid>
             <div className="contact-list">

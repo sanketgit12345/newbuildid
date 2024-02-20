@@ -9,9 +9,9 @@ export default function TicketPage() {
 
     return (
         <>
-            <Grid container spacing={1} rowGap={2} className="contact-grid">
+            <Grid container spacing={1} rowGap={2} className="page-heading-grid">
                 <Grid item sm={6} md={4} xs={12} lg={12} style={{ paddingTop: "0px", paddingLeft: "0px" }}>
-                    <h4 className="heading">Tickets</h4>
+                    <h4 className="page-heading-title">Tickets</h4>
                 </Grid>
             </Grid>
             <div className="contact-list">
