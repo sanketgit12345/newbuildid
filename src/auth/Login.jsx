@@ -5,7 +5,7 @@ import loginBanner from "../assets/images/login_banner.png";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Postrequestcall } from "../apicall/Postrequest";
-import { LOGIN, SIGNIN } from "../constant/Apipath";
+import { LOGIN } from "../constant/Apipath";
 import CryptoJS from 'crypto-js';
 import { useDispatch } from "react-redux";
 import { setLogindata } from "../redux/actions/actions";
@@ -32,27 +32,21 @@ export default function Login() {
         const loginObj = {
             Email: inputValue?.email,
             Password: hash,
-            DeviceName:"Dell",
+            DeviceName: "Dell",
             NotifyToken: "Test12333",
-            Platform: "windows",                           
+            Platform: "windows",
         }
-        let getLoginresponse = await Postrequestcall(LOGIN, loginObj,null); // Get token from login api
+        let getLoginresponse = await Postrequestcall(LOGIN, loginObj, null); // Get token from login api
         if (getLoginresponse.status === 200) {
-            const signinObj = {
-                Email:inputValue?.email,
-                Password:hash
+            let signIndata = {
+                token: getLoginresponse?.data?.data?.token,
+                data: getLoginresponse?.data?.data
             }
-            let getSigninresponse = await Postrequestcall(SIGNIN,signinObj,getLoginresponse?.data?.token); // Get user information form Signin api
-            if(getSigninresponse.status === 201) {
-                let signIndata = {
-                    token:getLoginresponse?.data?.token,
-                    data:getSigninresponse?.data?.data
-                }
-                dispatch(setLogindata(signIndata));
-                navigate("/main/home");
-            }
+            dispatch(setLogindata(signIndata));
+            navigate("/main/home");
         }
     }
+
 
     return (
         <Grid container spacing={2} className="login-grid">

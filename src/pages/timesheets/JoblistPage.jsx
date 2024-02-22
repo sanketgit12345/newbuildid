@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./TimesheetPage.css";
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import profileIcon from "../../assets/images/profile-img.jpg";
 import { useSelector } from "react-redux";
 import { Postrequestcall } from "../../apicall/Postrequest";
 import placeholder_img from "../../assets/images/placeholder-img.jpg";
@@ -17,8 +16,10 @@ export default function JoblistPage(props) {
     const { loginData } = useSelector((state) => state?.main);
 
     useEffect(() => {
-        getUserworkhistory();
-    }, [])
+        if(props.showJoblist === true) {
+            getUserworkhistory();
+        }
+    }, [props.showJoblist])
 
     const getUserworkhistory = async () => {
         const workHistoryObj = {
@@ -67,7 +68,8 @@ export default function JoblistPage(props) {
             distance: 0,
             comments: "",
             uploadImage: [],
-            isNew:true
+            isNew:true,
+            selectedGoals: []
         }
         props.setSelectedjob([...props.selectedJob, getJob]);
         props.setShowjoblist(false);

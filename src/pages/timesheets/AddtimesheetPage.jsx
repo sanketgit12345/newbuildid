@@ -1,13 +1,14 @@
-import { Button, Grid, Stack, TextField } from "@mui/material";
-import React, { useRef, useState } from "react";
+import { Button, Grid, IconButton, Input, InputAdornment, Stack, TextField } from "@mui/material";
+import React, { useState } from "react";
 import "./TimesheetPage.css";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import CloseIcon from '@mui/icons-material/Close';
-import getPostimg from "../../assets/images/post-card-first.jpg";
 import placeholder_img from "../../assets/images/placeholder-img.jpg";
 import JoblistPage from "./JoblistPage";
 import dayjs from 'dayjs';
@@ -15,11 +16,18 @@ import { Postrequestcall } from "../../apicall/Postrequest";
 import { useSelector } from "react-redux";
 import { SAVE_TIMESHEETS, SAVE_TIMESHEETS_ENTRIES, SAVE_TIMESHEETS_PICTURES } from "../../constant/Apipath";
 import { Fileuploadrequestcall } from "../../apicall/Fileuploadrequest";
+import AddIcon from '@mui/icons-material/Add';
+import { BIBlue, BIGrey } from "../../constant/Color";
+import HelpIcon from "@mui/icons-material/Help";
+import Goallist from "./Goallist";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
 export default function AddtimesheetPage() {
 
     const [showJoblist, setShowjoblist] = useState(false);
+    const [showGoals, setShowgoals] = useState(false);
     const [selectedJob, setSelectedjob] = useState([]);
     const { loginData } = useSelector((state) => state?.main);
     const [timesheetInfo, setTimesheetinfo] = useState({
@@ -30,8 +38,6 @@ export default function AddtimesheetPage() {
         unitOfDistance: "km",
         isSent: false,
     })
-
-    const inputRef = useRef();
 
     const onTimechange = (newValue, index) => {
         selectedJob[index].hours = newValue.toDate();
@@ -104,7 +110,7 @@ export default function AddtimesheetPage() {
     }
 
     const removeCurrentTimesheet = (getIndex) => {
-        let getUpdatedlist = selectedJob.filter((item,index)=> index !== getIndex);
+        let getUpdatedlist = selectedJob.filter((item, index) => index !== getIndex);
         setSelectedjob(getUpdatedlist);
     }
 
@@ -157,18 +163,16 @@ export default function AddtimesheetPage() {
                         formData.append('SiteId', item?.siteId);
                         formData.append('ModifiedBy', loginData?.data?.userId);
                         formData.append('PictureUrl', image)
-                        await Fileuploadrequestcall(SAVE_TIMESHEETS_PICTURES,formData,loginData?.token);
+                        await Fileuploadrequestcall(SAVE_TIMESHEETS_PICTURES, formData, loginData?.token);
                     })
                 });
             }
         }
     }
 
-    const handleWheel = (e) => {
-        // Prevent scrolling and blur the input
-       // e.preventDefault();
-        inputRef.current.blur();
-      };
+    const openGoalslist = () => {
+        setShowgoals(true);
+    }
 
     return (
         <>
@@ -188,11 +192,11 @@ export default function AddtimesheetPage() {
                         <Stack className="total-calc">
                             <Stack className="total-hours" direction={"row"}>
                                 <h5 className="total">Total :</h5>
-                                <span className="value" style={{marginLeft:"3px"}}>{timesheetInfo?.totalHours}</span>
+                                <span className="value" style={{ marginLeft: "3px" }}>{timesheetInfo?.totalHours}</span>
                             </Stack>
                             <Stack className="total-distance" direction={"row"}>
                                 <h5 className="total">Distance :</h5>
-                                <span className="value" style={{marginLeft:"3px"}}>{timesheetInfo?.totalDistance}</span>
+                                <span className="value" style={{ marginLeft: "3px" }}>{timesheetInfo?.totalDistance}</span>
                             </Stack>
                             <Button className="ticket-btn active" onClick={() => viewJoblist()}>Add Job</Button>
                         </Stack>
@@ -216,31 +220,61 @@ export default function AddtimesheetPage() {
                                         </Stack>
                                     </Grid>
                                     <Grid item xs={12} sm={12} md={6} lg={2} textAlign={"-webkit-right"}>
-                                        <div className="close-post" onClick={()=>removeCurrentTimesheet(parentIndex)}>
+                                        <div className="close-post" onClick={() => removeCurrentTimesheet(parentIndex)}>
                                             <CloseIcon style={{ color: "red" }} className="close-icon" />
                                         </div>
                                     </Grid>
-                                    <Grid item xs={12} sm={12} md={6} lg={4} marginTop={"15px"}>
-                                        <Stack direction={"row"} alignItems={"center"} gap={1}>
-                                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                                <TimePicker
-                                                    key={parentIndex}
-                                                    label="Hour"
-                                                    format="hh:mm"
-                                                    value={dayjs(item?.hours)}
-                                                    onChange={(newValue) => onTimechange(newValue, parentIndex)}
+                                    <Grid container>
+                                        <Grid item xs={12} sm={12} md={6} lg={4} marginTop={"15px"}>
+                                            <Stack direction={"row"} alignItems={"center"} gap={1}>
+                                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                    <TimePicker
+                                                        key={parentIndex}
+                                                        label="Hour"
+                                                        format="hh:mm"
+                                                        value={dayjs(item?.hours)}
+                                                        onChange={(newValue) => onTimechange(newValue, parentIndex)}
+                                                    />
+                                                </LocalizationProvider>
+                                                <span className="required-text">{"(Required)"}</span>
+                                            </Stack>
+                                        </Grid>
+                                        <Grid item xs={12} sm={12} md={6} lg={2} marginTop={"15px"}>
+                                            <TextField label="Distance" onWheel={(e) => e.target.blur()} type="number" value={item?.distance} name="distance" onChange={(e) => onDistancechange(e, parentIndex)} variant="outlined" />
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item xs={12} sm={12} md={6} lg={6} marginTop={"15px"} className="goals-list">
+                                        {[1, 2, 3, 4].map((item, index) => (
+                                            <Stack flexDirection={"row"} alignItems={"center"} gap={2} style={{ marginTop: index > 0 ? "10px" : 0 }} >
+                                                <DeleteIcon style={{ cursor: "pointer" }} htmlColor="#f50505" />
+                                                <Input
+                                                    type={"text"}
+                                                    value={"123"}
+                                                    className="goal-input"
+                                                    size="medium"
+                                                    disabled={true}
+                                                    endAdornment={
+                                                        <InputAdornment position="end">
+                                                            <IconButton edge="end">
+                                                                <ArrowDropDownIcon />
+                                                            </IconButton>
+                                                        </InputAdornment>
+                                                    }
                                                 />
-                                            </LocalizationProvider>
-                                            <span className="required-text">{"(Required)"}</span>
+                                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                    <MobileTimePicker slotProps={{ textField: { size: "small" } }} defaultValue={dayjs('2022-04-17T15:30')} />
+                                                </LocalizationProvider>
+                                            </Stack>
+                                        ))
+                                        }
+                                    </Grid>
+                                    <Grid item xs={12} sm={12} md={6} lg={12}>
+                                        <Stack flexDirection={"row"} alignItems={"center"} gap={1} margin={"5px 0px"}>
+                                            <Button style={{ color: BIBlue }} startIcon={<AddIcon />} onClick={() => openGoalslist()}>
+                                                Add Goal
+                                            </Button>
+                                            <HelpIcon style={{ color: BIGrey, cursor: 'pointer', fontSize: '18px' }} />
                                         </Stack>
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={6} lg={4} marginTop={"15px"}>
-                                        <TextField label="Distance" onWheel={(e)=>e.target.blur()}  type="number" value={item?.distance} name="distance" onChange={(e) => onDistancechange(e, parentIndex)} variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={6} lg={4} display={"flex"} alignItems={"center"} justifyContent={"end"} textAlign={"end"} marginTop={"15px"}>
-                                        <Button className="ticket-btn active">Add Goal</Button>
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={6} lg={12} marginTop={"15px"}>
                                         <TextField
                                             label="Comments (Optional)"
                                             multiline
@@ -299,6 +333,7 @@ export default function AddtimesheetPage() {
                 </Grid>
             </div>
             <JoblistPage selectedJob={selectedJob} setSelectedjob={setSelectedjob} showJoblist={showJoblist} setShowjoblist={setShowjoblist} />
+            <Goallist showGoals={showGoals} setSelectedjob={setSelectedjob} setShowgoals={setShowgoals} />
         </>
     )
 

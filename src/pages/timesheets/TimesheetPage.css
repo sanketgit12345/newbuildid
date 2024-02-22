@@ -233,9 +233,22 @@
    color: rgba(0, 0, 0, 0.6);
 }
 
+.add-timesheet .job-grid .goals-list {
+   border: 1px solid #CCCCCC;
+   padding: 10px;
+}
+
+.add-timesheet .job-grid .goals-list .goal-input {
+    border: 1px solid #CCCCCC;
+    padding: 4px 7px;
+    border-radius: 5px;
+}
+
+.add-timesheet .job-grid .goals-list .goal-input::before {
+   border-bottom-style:none;
+}
 
 /******************** Job listing **************************/
-
 
 .joblist-content {
    position: absolute;
